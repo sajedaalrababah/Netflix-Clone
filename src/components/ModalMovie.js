@@ -4,6 +4,7 @@ import { Form } from 'react-bootstrap';
 
 
 export default  function ModalMovie(props){
+  const full_path = 'https://www.themoviedb.org/t/p/w220_and_h330_face' + props.movie.poster_path
     return (
         <Modal show={props.show} onHide={props.handleClose} >
         <Modal.Header closeButton>
@@ -11,6 +12,7 @@ export default  function ModalMovie(props){
         </Modal.Header>
        
         <Modal.Body>
+        <img  src={`${full_path}`} alt={props.movie.title}/>
        <Form>
          <Form.Group
               className="mb-3"

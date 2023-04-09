@@ -11,12 +11,14 @@ export default function Movie(props){
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    
+    const full_path = 'https://www.themoviedb.org/t/p/w220_and_h330_face' + props.movie.poster_path
 
     return(
+      
+
     <>
     <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={props.movie.Image} />
+      <Card.Img variant="top" src={full_path}/>
       <Card.Body>
         <Card.Title>{props.movie.title}</Card.Title>
         <Card.Text>

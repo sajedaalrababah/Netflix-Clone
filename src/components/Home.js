@@ -3,10 +3,11 @@ import MovieList from './MovieList';
 
 
   export default function Home(){
-    const url =`https://sajeda-alrababah.onrender.com/trending`;
+     const url=process.env.REACT_APP_SERVER_URL;
+    
     const [movies, setmovies] = useState([]);
      async function sendReq(){
-        const response = await fetch(url);
+        const response = await fetch(`${url}/trending`);;
         console.log(response)
         const data = await response.json();
         console.log(data);
