@@ -4,6 +4,7 @@ import React from 'react'
 import { useState, useEffect } from "react";
 
 
+
 export default function FavList(props){
     const [favMovies, setFavMovies] = useState([]);
 
@@ -42,7 +43,23 @@ export default function FavList(props){
 
     }
 
+async function handleUpdate(id){
+    let url =`${process.env.REACT_APP_SERVER_URL}/UPDATE/${id}`;
+      let data={
+        
+      };
+     let response = await fetch(url,{
 
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        })
+        if(response.status===201){
+            getFavMovie();
+        }
+}
 
 
 
@@ -51,7 +68,8 @@ export default function FavList(props){
     useEffect(() => {
         getFavMovie();
     }, []);
-    const full_path = 'https://www.themoviedb.org/t/p/w220_and_h330_face' + props.movie.poster_path
+
+   
 
     return(
         <>
@@ -60,11 +78,12 @@ export default function FavList(props){
             favMovies && favMovies.map(movie=>{
                 return(
                     <Card style={{ width: "18rem" }}>
-                    <Card.Img variant="top" src={`${full_path}`} />
+                    <Card.Img variant="top" src={movie.full_path} />
                     <Card.Body>
-                      <Card.Title>{movie.title}</Card.Title>
-                      <Card.Text>{movie.summary.substring(0,100)}</Card.Text>
-                      <Button variant="primary" onClick={()=>handleDelete(movie.id)}> Delete </Button>
+                      <Card.Title>{movie.moviename}</Card.Title>
+                      <Card.Text>{movie.overview}</Card.Text>
+                      <Button variant="primary" onClick={()=>handleDelete(movie.id)}> DELETE </Button>
+                      <Button variant="primary" onClick={()=>handleUpdate(movie.id)}> UPDATE </Button>
                     </Card.Body>
                   </Card>
                 )

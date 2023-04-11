@@ -4,7 +4,7 @@ import { Form } from 'react-bootstrap';
 import {useRef } from 'react';
 
 export default  function ModalMovie(props){
-
+  const full_path = 'https://www.themoviedb.org/t/p/w220_and_h330_face' + props.movie.poster_path
   const commentRef = useRef();
 
   function submitHandler(e){
@@ -20,7 +20,8 @@ export default  function ModalMovie(props){
     let url =`${process.env.REACT_APP_SERVER_URL}/addMovie`;
   
     let data={
-    moviename:props.movie.moviename,
+     moviename:props.movie.title,
+     full_path:'https://www.themoviedb.org/t/p/w220_and_h330_face' + props.movie.poster_path,
       overview:props.movie.overview,
       comment:props.movie.comment
     }
@@ -49,7 +50,7 @@ export default  function ModalMovie(props){
 
 
 
-  const full_path = 'https://www.themoviedb.org/t/p/w220_and_h330_face' + props.movie.poster_path
+
     return (
         <Modal show={props.show} onHide={props.handleClose} >
         <Modal.Header closeButton>
