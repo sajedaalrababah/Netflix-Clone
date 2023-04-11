@@ -27,9 +27,9 @@ export default function Movie(props){
         <Button variant="primary" onClick={handleShow}>Add to favorite list</Button>
       </Card.Body>
     </Card>
-    <ModalMovie show={show} handleClose={handleClose} movie={props.movie} />
+    <ModalMovie show={show} handleClose={handleClose} movie={props.movie}commentHandler={props.commentHandler} />
     </>
  )
-
+ 
 
 }
